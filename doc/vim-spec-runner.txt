@@ -1,1 +1,38 @@
-Foo?
+*vim-spec-runner.txt*
+
+Author:           Mathias Lafeldt <mathias.lafeldt@jimdo.com>
+Plugin Homepage:  <https://github.com/Jimdo/vim-spec-runner>
+
+========================================================================
+CONTENTS                                         *VimSpecRunnerContents*
+
+  1. Introduction ........... |VimSpecRunnerIntroduction|
+  2. Installation ........... |VimSpecRunnerInstallation|
+  3. Usage .................. |VimSpecRunnerUsage|
+
+========================================================================
+1. INTRODUCTION                              *VimSpecRunnerIntroduction*
+
+Vim Spec-Runner is a Vim plugin to execute rspec and cucumber tests from
+inside an opened test file in Vim.
+
+========================================================================
+2. INSTALLATION                              *VimSpecRunnerInstallation*
+
+If you don't have a preferred installation method, I recommend
+installing vundle, add Bundle 'Jimdo/vim-spec-runner' to your |vimrc|
+and then:
+
+  - either within Vim: :BundleInstall
+  - or in your shell: vim +BundleInstall +qall
+
+========================================================================
+3. USAGE                                            *VimSpecRunnerUsage*
+
+Key-Bindings for Vim Spec-Runner:
+  
+  <leader>t             Execute the whole test file
+  <leader>T             Execute the test around the current cursor
+                        position
+  <leader>a             Run all the tests
+
