@@ -3,11 +3,15 @@ if exists("g:spec_runner_loaded")
 endif
 let g:spec_runner_loaded = 1
 
-nnoremap <leader>t :call RunTestFile()<cr>
-nnoremap <leader>T :call RunNearestTest()<cr>
-nnoremap <leader>a :call RunTests('')<cr>
+command RunTestFile    call <SID>RunTestFile()
+command RunNearestTest call <SID>RunNearestTest()
+command RunAllTests    call <SID>RunTests('')
 
-function! RunTestFile(...)
+nnoremap <leader>t :RunTestFile<cr>
+nnoremap <leader>T :RunNearestTest<cr>
+nnoremap <leader>a :RunAllTests<cr>
+
+function s:RunTestFile(...)
   if a:0
     let command_suffix = a:1
   else
@@ -17,24 +21,24 @@ function! RunTestFile(...)
   " Run the tests for the previously-marked file.
   let in_test_file = match(expand("%"), '\(.feature\|_spec.rb\)$') != -1
   if in_test_file
-    call SetTestFile()
+    call s:SetTestFile()
   elseif !exists("t:grb_test_file")
     return
   end
-  call RunTests(t:grb_test_file . command_suffix)
+  call s:RunTests(t:grb_test_file . command_suffix)
 endfunction
 
-function! RunNearestTest()
+function s:RunNearestTest()
   let spec_line_number = line('.')
-  call RunTestFile(":" . spec_line_number)
+  call s:RunTestFile(":" . spec_line_number)
 endfunction
 
-function! SetTestFile()
+function s:SetTestFile()
   " Set the spec file that tests will be run for.
   let t:grb_test_file=@%
 endfunction
 
-function! RunTests(filename)
+function s:RunTests(filename)
   " Write the file and run tests for the given filename.
   if expand("%") != ""
     :w
