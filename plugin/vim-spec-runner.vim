@@ -1,11 +1,7 @@
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" RUNNING TESTS
-"
-" This is a modified version of Gary Bernhardt's code that allows to run both
-" RSpec and Cucumber tests with the same mappings.
-"
-" Copied from https://github.com/mlafeldt/dotfiles/blob/master/vim/vimrc
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if exists("g:spec_runner_loaded")
+  finish
+endif
+let g:spec_runner_loaded = 1
 
 nnoremap <leader>t :call RunTestFile()<cr>
 nnoremap <leader>T :call RunNearestTest()<cr>
