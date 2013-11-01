@@ -7,9 +7,17 @@ command RunTestFile    call <SID>RunTestFile()
 command RunNearestTest call <SID>RunNearestTest()
 command RunAllTests    call <SID>RunTests('')
 
-nnoremap <leader>t :RunTestFile<cr>
-nnoremap <leader>T :RunNearestTest<cr>
-nnoremap <leader>a :RunAllTests<cr>
+if !hasmapto(':RunTestFile<cr>')
+  nnoremap <leader>t :RunTestFile<cr>
+endif
+
+if !hasmapto(':RunNearestTest<cr>')
+  nnoremap <leader>T :RunNearestTest<cr>
+endif
+
+if !hasmapto(':RunAllTests<cr>')
+  nnoremap <leader>a :RunAllTests<cr>
+endif
 
 function s:RunTestFile(...)
   if a:0

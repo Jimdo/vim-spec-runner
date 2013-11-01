@@ -29,10 +29,17 @@ and then:
 ========================================================================
 3. USAGE                                            *VimSpecRunnerUsage*
 
-Key-Bindings for Vim Spec-Runner:
-  
+By default, Vim Spec-Runner comes with these mappings:
+
   <leader>t             Execute the whole test file
   <leader>T             Execute the test around the current cursor
                         position
   <leader>a             Run all the tests
 
+However, the plugin won't overwrite a pre-existing mapping so if you
+prefer to define different mappings use lines like these in your
+~/.vimrc:
+
+  nnoremap <leader>t :RunTestFile<cr>
+  nnoremap <leader>T :RunNearestTest<cr>
+  nnoremap <leader>a :RunAllTests<cr>
