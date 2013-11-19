@@ -52,9 +52,12 @@ function s:RunTests(filename)
     :w
   end
 
-  " Jimdo Puppet Sondergeloet
-  if filereadable("scripts/spec-runner")
-    exec ":!./scripts/spec-runner " . a:filename
+  " First choice: project-specific test script
+  if filereadable("script/test")
+    exec ":!./script/test " . a:filename
+    return
+  elseif filereadable("scripts/test")
+    exec ":!./scripts/test " . a:filename
     return
   end
 
