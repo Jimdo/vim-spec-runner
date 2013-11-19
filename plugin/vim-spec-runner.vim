@@ -56,11 +56,8 @@ function s:RunTests(filename)
   if filereadable("script/test")
     exec ":!./script/test " . a:filename
     return
-  end
-
-  " Jimdo Puppet Sondergeloet
-  if filereadable("scripts/spec-runner")
-    exec ":!./scripts/spec-runner " . a:filename
+  elseif filereadable("scripts/test")
+    exec ":!./scripts/test " . a:filename
     return
   end
 
