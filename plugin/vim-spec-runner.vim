@@ -29,11 +29,11 @@ function s:RunTestFile(...)
   " Run the tests for the previously-marked file.
   let in_test_file = match(expand("%"), '\(.feature\|_spec.rb\)$') != -1
   if in_test_file
-    call s:SetTestFile()
+    call s:SetTestFile(command_suffix)
   elseif !exists("t:grb_test_file")
     return
   end
-  call s:RunTests(t:grb_test_file . command_suffix)
+  call s:RunTests(t:grb_test_file)
 endfunction
 
 function s:RunNearestTest()
@@ -41,9 +41,9 @@ function s:RunNearestTest()
   call s:RunTestFile(":" . spec_line_number)
 endfunction
 
-function s:SetTestFile()
+function s:SetTestFile(command_suffix)
   " Set the spec file that tests will be run for.
-  let t:grb_test_file=@%
+  let t:grb_test_file=@% . a:command_suffix
 endfunction
 
 function s:RunTests(filename)
